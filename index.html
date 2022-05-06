@@ -5,74 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>wallet</title>
+    <title>Document</title>
 </head>
 <body>
-    <div class="content">
-         <div class="usuario"> <p class="saludo">Hola! <span id="titulo">RECUPERAR VARIBLE NOMBRE</span></p> </div>
-        <main class="main"> 
-            <div class="wallet">
-                <div class="ingreso">
-                    <P>Balance Total</P>
-                    <p>ARS$: <span class="import"></span></p>
-                    <!-- <p class="button">INGRESAR DINERO</p> -->
-                    <button id="ingresarDinero">INGRESAR DINERO </button>
+    <div id="particles-js"> 
+        <div class="iniciarSesion"><a href="wallet.html">Iniciar Sesion</a></div>
+        <section class="container_inicio">
+            <div class="test_gadget">
+                <div class="aviso">
+                    <p class="p__aviso">Gallet, es una simulación de una wallet. Recuerda que ninguna de las acciones
+                        realizadas aquí son reales. <br>
+                        En esta primer pagina solamente podras acceder a la "billetera" por iniciar sesion,
+                        ingresando tu nombre como usuario y una contraseña cualquiera
+                    </p>
                 </div>
-                <div class="monedas">
-                    <p>Tus monedas</p>
-                    <ul  id="Cripto">
-                        <li><span>ARS  </span><span class="import"></span></li>
-                        <!--<li><span>UNI  </span><span class="BTN">0.0000000</span><span> UNI <button id="compBtc1"   class="cmp_mon">COMPRAR </button><button id="vndCpt1" class="vnd_mon2">VENDER</button></span> </li>                        
-                        <li><span>BTN  </span><span class="BTN">0.0000000</span><span> BTN <button id="compBtc2"   class="cmp_mon">COMPRAR </button><button id="vndCpt2" class="vnd_mon2">VENDER</button></span> </li>                     
-                        <li><span>DAI  </span><span class="BTN">0.0000000</span><span> DAI <button id="compBtc3"   class="cmp_mon">COMPRAR </button><button id="vndCpt3" class="vnd_mon2">VENDER</button></span> </li>                     
-                        <li><span>ETH  </span><span class="BTN">0.0000000</span><span> ETH <button id="compBtc4"   class="cmp_mon">COMPRAR </button><button id="vndCpt4" class="vnd_mon2">VENDER</button></span> </li>                     
-                        <li><span>LUNA  </span><span class="BTN">0.0000000</span><span> LUNA <button id="compBtc5" class="cmp_mon">COMPRAR </button><button id="vndCpt5" class="vnd_mon2">VENDER</button></span> </li>                     
-                        <li><span>MANA  </span><span class="BTN">0.0000000</span><span> MANA <button id="compBtc6" class="cmp_mon">COMPRAR </button><button id="vndCpt6" class="vnd_mon2">VENDER</button></span> </li>                     
-                        <li><span>SLP  </span><span class="BTN">0.0000000</span><span> SLP <button id="compBtc7"   class="cmp_mon">COMPRAR </button><button id="vndCpt7" class="vnd_mon2" >VENDER</button></span> </li>                     
-                        <li><span>SOL  </span><span class="BTN">0.0000000</span><span> SOL <button id="compBtc8"   class="cmp_mon">COMPRAR </button><button id="vndCpt8" class="vnd_mon2">VENDER</button></span> </li> -->
-                    </ul>
+                <div class="contedor_imagen">
+                    <div class="gadget_img">  </div>
                 </div>
             </div>
-            <div class="mercado">
-                <p>Mercado</p>
-                <ul id="Cripto2">
-<!--                     <li><span>UNI  </span><span class = "moned"></span><span></span>USD  <button id="compBtc1"   class="cmp_mon2">COMPRAR </button><button id="vndCpt1" class="vnd_mon">VENDER</button></li>
-                    <li><span>BTN  </span><span class = "moned"></span><span></span>USD  <button id="compBtc2"   class="cmp_mon2">COMPRAR </button><button id="vndCpt2" class="vnd_mon">VENDER</button></li>
-                    <li><span>DAI  </span><span class = "moned"></span><span></span>USD  <button id="compBtc3"   class="cmp_mon2">COMPRAR </button><button id="vndCpt3" class="vnd_mon">VENDER</button></li>
-                    <li><span>ETH  </span><span class = "moned"></span><span></span>USD  <button id="compBtc4"   class="cmp_mon2">COMPRAR </button><button id="vndCpt4" class="vnd_mon">VENDER</button></li>
-                    <li><span>LUNA </span><span class = "moned"></span><span></span>USD  <button id="compBtc5"   class="cmp_mon2">COMPRAR </button><button id="vndCpt5" class="vnd_mon">VENDER</button></li>
-                    <li><span>MANA </span><span class = "moned"></span><span></span>USD  <button id="compBtc6"   class="cmp_mon2">COMPRAR </button><button id="vndCpt6" class="vnd_mon">VENDER</button></li>
-                    <li><span>SLP  </span><span class = "moned"></span><span></span>USD  <button id="compBtc7"   class="cmp_mon2">COMPRAR </button><button id="vndCpt7" class="vnd_mon" >VENDER</button></li>
-                    <li><span>SOL  </span><span class = "moned"></span><span></span>USD  <button id="compBtc8"   class="cmp_mon2">COMPRAR </button><button id="vndCpt8" class="vnd_mon">VENDER</button></li> -->
-                </ul>
-
-            </div>
-           
-            <div class="conversor">
-                <h2>Conversor de pesos$ a: </h2>
-                <form name="form" action="" method="get">
-                    <input type="number" name="Peso" id="peso"> 
-                    <p>Elige una moneda: 
-                        <select name="Cripto" id="monCam">
-                          <option>UNI</option>
-                          <option>BTN</option>
-                          <option>DAI</option>
-                          <option>ETH</option>
-                          <option>LUNA</option>
-                          <option>MANA</option>
-                          <option>SLP</option>
-                          <option>SOL</option>
-                          <option>USD</option>
-                        </select>
-                     </p>                             
-                </form>                
-                <button onclick="sub()">Convertir</button> <input type="number" name="resul" id="resul">
-    
-            </div>
-        </main>
+        </section>  
     </div>
-
-
-    <script src="js/main.js"></script>
+   
+   
+    <script src="js/particles.js"></script>
+    <script src="js/appParticles.js"></script>
 </body>
 </html>
