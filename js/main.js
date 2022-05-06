@@ -23,7 +23,7 @@ ingresaImpor();
 
 
 const monedas =[
-{id : 1, nombre : '', nomRed : 'UNI', precio : 8.98},
+{id : 1, nombre : '', nomRed : 'UNI', precio : 8.97},
 {id : 2, nombre : 'Bitcoin', nomRed : 'BTN', precio : 39559.94},
 {id : 3, nombre : 'Dai', nomRed : 'DAI', precio : 1 },
 {id : 4, nombre : 'Etheriun', nomRed : 'ETH', precio : 2937.68},
