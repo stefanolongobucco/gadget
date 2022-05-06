@@ -21,7 +21,7 @@ particlesJS(
               "nb_sides": 5
             },
             "image": {
-              "src": "../Proyecto%20JS/css/img/cripto.webp",
+              "src": "/css/img/cripto.webp",
               "width": 100,
               "height": 100
             }
