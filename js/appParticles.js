@@ -1,3 +1,5 @@
+alert('hola');
+
 particlesJS(
     {
         "particles": {
@@ -21,7 +23,7 @@ particlesJS(
               "nb_sides": 5
             },
             "image": {
-              "src": "../css/img/bitcoin.png",
+              "src": "img/bitcoin.png",
               "width": 100,
               "height": 100
             }
@@ -108,6 +110,6 @@ particlesJS(
           }
         },
         "retina_detect": true
-      }
+    }
 );
 
