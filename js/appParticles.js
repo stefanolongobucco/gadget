@@ -1,4 +1,3 @@
-alert('hola');
 
 particlesJS(
     {
@@ -23,7 +22,7 @@ particlesJS(
               "nb_sides": 5
             },
             "image": {
-              "src": "img/bitcoin.png",
+              "src": "css/img/bitcoin.png",
               "width": 100,
               "height": 100
             }
