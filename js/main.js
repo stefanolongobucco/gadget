@@ -1,14 +1,26 @@
 
-var impor = 0
-var imporMon = 0
-var depo = 0
-var cBtc = 0
-var vBtc = 0
+let impor = 0
+let imporMon = 0
+let depo = 0
+let cBtc = 0
+let vBtc = 0
 const usd = 202.7
 
+let direccion = window.location.href
 
-let titulo = prompt("Cual es tu nombre?")
-document.getElementById("titulo").innerHTML=titulo[0].toUpperCase() + titulo.slice(1).toLowerCase(); 
+if(direccion.indexOf('Contacto') !== -1) {
+
+let inicio = document.getElementById("iniciarSesion"); 
+
+inicio.onclick = () => {   
+    let titulo = document.getElementById("pruebaIninicio").value;
+    localStorage.setItem('nombre', titulo);    
+    location.href="wallet.html";  
+};
+}
+let nombre = localStorage.getItem('nombre');
+
+document.getElementById("titulo").innerHTML=nombre[0].toUpperCase() + nombre.slice(1).toLowerCase(); 
 
 
 
