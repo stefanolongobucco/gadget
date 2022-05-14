@@ -6,28 +6,14 @@ let cBtc = 0
 let vBtc = 0
 const usd = 202.7
 
-let direccion = window.location.href
 
-if(direccion.indexOf('Contacto') !== -1) {
-
-let inicio = document.getElementById("iniciarSesion"); 
-
-inicio.onclick = () => {   
-    let titulo = document.getElementById("pruebaIninicio").value;
-    localStorage.setItem('nombre', titulo);    
-    location.href="wallet.html";  
-};
-}
-let nombre = localStorage.getItem('nombre');
-
-document.getElementById("titulo").innerHTML=nombre[0].toUpperCase() + nombre.slice(1).toLowerCase(); 
-
+//localStorage.setItem('balance', 0); 
 
 
 function ingresaImpor(){
 x=document.getElementsByClassName("import"); 
     for(var i = 0; i < x.length; i++){
-        document.getElementsByClassName("import")[i].innerHTML= impor;
+        document.getElementsByClassName("import")[i].innerHTML= localStorage.getItem('balance');
     };
 };
 
@@ -66,7 +52,9 @@ const btn = document.getElementById("ingresarDinero");
 btn.addEventListener("click",
 function(){  
 depo =  parseFloat(prompt("Cuanto dinero se depositara?"));
-impor = impor + depo;
+let balance = localStorage.getItem('balance');
+localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
+let impor = localStorage.getItem('balance');
 document.getElementsByClassName("import")[0].innerHTML= impor;
 imporMon = imporMon + depo
 document.getElementsByClassName("import")[1].innerHTML= imporMon;
@@ -164,26 +152,6 @@ function venderCripto(y){
 };   
 
 
-function sub(){
-    let ConvertPeso = 0;
-    let resultCambio = 0;
-    let monACam = document.getElementById("monCam").value;
-    ConvertPeso = document.getElementById("peso").value;  
-    switch (monACam){
-        case 'UNI':  resultCambio = ((ConvertPeso / usd) / monedas[0].precio);  break;
-        case 'BTN':  resultCambio = ((ConvertPeso / usd) / monedas[1].precio);  break;
-        case 'DAI':  resultCambio = ((ConvertPeso / usd) / monedas[2].precio);  break;
-        case 'ETH':  resultCambio = ((ConvertPeso / usd) / monedas[3].precio);  break;
-        case 'LUNA': resultCambio = ((ConvertPeso / usd) / monedas[4].precio);  break;
-        case 'MANA': resultCambio = ((ConvertPeso / usd) / monedas[5].precio);  break;
-        case 'SLP':  resultCambio = ((ConvertPeso / usd) / monedas[6].precio);  break;
-        case 'SOL':  resultCambio = ((ConvertPeso / usd) / monedas[7].precio);  break;
-        case 'USD':  resultCambio = ConvertPeso / usd;               break;
-        };
-
-    document.getElementById("resul").value = resultCambio;
-
-};
 
 
 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+    <link rel="stylesheet" href="../css/principal_page.css">
+</head>
+<body>
+<div class="content__principal">
+<header class="header">    
+    <div class="logo-nav">
+        <i><img src="../css/img/gadget_icon.png" alt=""></i>
+    </div>
+    <ul class="nav__ul">   
+        <li class="nav__li">Inicio</li>
+        <li class="nav__li"><a href="wallet.html">Billetera</a></li>
+        <li class="nav__li">Cotizacion</li>
+        <li class="nav__li">Movimientos</li>
+    </ul>
+
+</header>
+<div class="principal__main">
+    <div class="nav-menu">
+        <div class="nav__top">
+            <div class="balanceTotal">
+                <P>Balance Total</P>
+                <p>ARS$: <span class="import"></span></p>
+            </div>
+            <div class="ingreso">                                
+                <button id="ingresarDinero">Depositar</button>
+            </div>   
+            <div class="comprar__nav">                                
+                <button id="comprarCripto">Comprar</button>
+            </div>  
+        </div> 
+        <div class="nav__icon">   
+            <label for="check" class="checkbtn">
+                <i class="menu-icon" >
+                    <div class="bars__menu">
+                        <span class="line1__bars-menu"></span>
+                        <span class="line2__bars-menu"></span>
+                        <span class="line3__bars-menu"></span>
+                    </div> 
+                </i>
+            </label>
+        </div>     
+    </div>
+    <div class="main_content">
+        <div class="conversor">
+            <h2>Conversor de pesos$ a: </h2>
+            <form name="form" action="" method="get">
+                <input type="number" name="Peso" id="peso"> 
+                <p>Elige una moneda: 
+                    <select name="Cripto" id="monCam">
+                    <option>UNI</option>
+                    <option>BTN</option>
+                    <option>DAI</option>
+                    <option>ETH</option>
+                    <option>LUNA</option>
+                    <option>MANA</option>
+                    <option>SLP</option>
+                    <option>SOL</option>
+                    <option>USD</option>
+                    </select>
+                </p>                             
+            </form>                
+            <button onclick="sub()">Convertir</button> 
+            <input type="number" name="resul" id="resul">
+
+        </div>
+    </div>
+</div>
+</div>
+<script src="../js/cotizacion.js"></script>
+<script src="../js/nav.js"></script>
+</body>
+</html>
