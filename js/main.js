@@ -8,6 +8,7 @@ const usd = 202.7
 
 
 //localStorage.setItem('balance', 0); 
+//localStorage.setItem('balancePesos', 0); 
 
 
 function ingresaImpor(){
@@ -54,9 +55,11 @@ function(){
 depo =  parseFloat(prompt("Cuanto dinero se depositara?"));
 let balance = localStorage.getItem('balance');
 localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
-let impor = localStorage.getItem('balance');
+impor = localStorage.getItem('balance');
 document.getElementsByClassName("import")[0].innerHTML= impor;
-imporMon = imporMon + depo
+let balancePesos = localStorage.getItem('balancePesos');
+localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(depo));
+imporMon = localStorage.getItem('balancePesos'); 
 document.getElementsByClassName("import")[1].innerHTML= imporMon;
 }); 
 
@@ -73,14 +76,16 @@ class cripto {
 
 
     
-    comprar(y) { 
+    comprar(y) {         
         this.seMuestra = this.seMuestra + 1;        
         cBtc =  parseFloat(prompt("Cuantos Cripto quieres comprar?(en pesos)"+`${monedas[y].nomRed}`));
-        if(imporMon >= cBtc){           
+        if(localStorage.getItem('balancePesos') >= cBtc){           
         this.acum = this.acum  + ((cBtc/usd) / monedas[y].precio);
         cargarMisMonedas(y);
-        document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= misMonedas[y].acum;  
-        imporMon = imporMon - cBtc;
+        document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= misMonedas[y].acum; 
+        let balancePesos = localStorage.getItem('balancePesos'); 
+        localStorage.setItem('balancePesos', parseFloat(balancePesos) - parseFloat(cBtc));
+        imporMon = localStorage.getItem('balancePesos');
         document.getElementsByClassName("import")[1].innerHTML= imporMon;
         }else{alert("No tiene suficiente dinero en su cuenta")};        
         ;}
@@ -89,8 +94,10 @@ class cripto {
         cBtc =  parseFloat(prompt("Cuantos Criptos quieres vender?(en pesos)"));
         if(this.acum >= ((cBtc/usd) / monedas[y].precio)){
             this.acum = this.acum  - ((cBtc/usd) / monedas[y].precio);
-            document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= misMonedas[y].acum;   
-            imporMon = imporMon + cBtc;
+            document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= misMonedas[y].acum; 
+            let balancePesos = localStorage.getItem('balancePesos'); 
+            localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(cBtc));
+            imporMon = localStorage.getItem('balancePesos');
             document.getElementsByClassName("import")[1].innerHTML= imporMon;           
            if(misMonedas[y].acum == 0){this.seMuestra = -1; cargarMisMonedas(y); this.seMuestra =  0;};
            

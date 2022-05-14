@@ -29,8 +29,10 @@ function(){
 depo =  parseFloat(prompt("Cuanto dinero se depositara?"));
 let balance = localStorage.getItem('balance');
 localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
-let impor = localStorage.getItem('balance');
+impor = localStorage.getItem('balance');
 document.getElementsByClassName("import")[0].innerHTML= impor;
-imporMon = imporMon + depo
+let balancePesos = localStorage.getItem('balancePesos');
+localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(depo));
+imporMon = localStorage.getItem('balancePesos'); 
 document.getElementsByClassName("import")[1].innerHTML= imporMon;
 }); 

@@ -13,7 +13,7 @@ body{
 
 .main__inicio{
     display: grid;  
-    grid-template-rows: 50% 50%;
+    grid-template-columns: 50% 50%;
     height: 100%; 
     width: 100%;
 }
@@ -88,15 +88,17 @@ font-size: 2em;
 @media screen and (max-width: 900px) {
     .alert__float{   right: 40%;}
     .imag__inicio{   display: none;}
-    .main__inicio{    grid-template-columns: 100%;}    
+    .main__inicio{grid-template-columns: 100%;}        
     .main__inicio{padding-top: 2em;}
     
 }
 
-@media screen and (max-width: 450px) {    
+@media screen and (max-width: 500px) {    
     .section__inicio{gap: 1em;}
     .p__inicio{font-size: 1.5em;}
     .boton__inicio{font-size: 1em;
             }.boton__inicio:hover {font-size: 1.2em;}
     .input__inicio{font-size: 1.5em;}
+    .main__inicio{grid-template-columns: 100%;
+                  grid-template-rows: 50%;} 
 }

@@ -1,5 +1,6 @@
 
 localStorage.setItem('balance', 0); 
+localStorage.setItem('balancePesos', 0); 
 
 let test = document.getElementsByClassName("input__inicio")[0]; 
 
