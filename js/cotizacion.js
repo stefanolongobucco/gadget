@@ -5,16 +5,45 @@ let cBtc = 0
 let vBtc = 0
 const usd = 202.7
 
-const monedas =[
-    {id : 1, nombre : '', nomRed : 'UNI', precio : 8.97},
-    {id : 2, nombre : 'Bitcoin', nomRed : 'BTN', precio : 39559.94},
-    {id : 3, nombre : 'Dai', nomRed : 'DAI', precio : 1 },
-    {id : 4, nombre : 'Etheriun', nomRed : 'ETH', precio : 2937.68},
-    {id : 5, nombre : 'Luna', nomRed : 'LUNA', precio : 91.33},
-    {id : 6, nombre : 'Mana', nomRed : 'MANA', precio : 2.01},
-    {id : 7, nombre : '', nomRed : 'SLP', precio : 0.02},
-    {id : 8, nombre : '', nomRed : 'SOL', precio : 100.94}
-    ];
+const monedas = JSON.parse(localStorage.getItem("monedasLocales"));
+
+function ingresaImpor(){
+    x=document.getElementsByClassName("import"); 
+        for(var i = 0; i < x.length; i++){
+            document.getElementsByClassName("import")[i].innerHTML= localStorage.getItem('balance');
+        };
+    };
+    
+    ingresaImpor();
+    
+    
+   
+    
+    function CargarMonedas(){
+    x=document.getElementsByClassName("moned"); 
+        for(var i = 0; i < x.length; i++){
+        document.getElementsByClassName("moned")[i].innerHTML= monedas[i].precioCompra;
+    };
+    };
+    CargarMonedas();
+    
+    
+    
+    
+    const btn = document.getElementById("ingresarDinero");
+    
+    btn.addEventListener("click",
+    function(){  
+    depo =  parseFloat(prompt("Cuanto dinero se depositara?"));
+    let balance = localStorage.getItem('balance');
+    localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
+    impor = localStorage.getItem('balance');
+    document.getElementsByClassName("import")[0].innerHTML= impor;
+    let balancePesos = localStorage.getItem('balancePesos');
+    localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(depo));
+    imporMon = localStorage.getItem('balancePesos'); 
+    document.getElementsByClassName("import")[1].innerHTML= imporMon;
+    }); 
 
 
 
@@ -24,14 +53,14 @@ function sub(){
     let monACam = document.getElementById("monCam").value;
     ConvertPeso = document.getElementById("peso").value;  
     switch (monACam){
-        case 'UNI':  resultCambio = ((ConvertPeso / usd) / monedas[0].precio);  break;
-        case 'BTN':  resultCambio = ((ConvertPeso / usd) / monedas[1].precio);  break;
-        case 'DAI':  resultCambio = ((ConvertPeso / usd) / monedas[2].precio);  break;
-        case 'ETH':  resultCambio = ((ConvertPeso / usd) / monedas[3].precio);  break;
-        case 'LUNA': resultCambio = ((ConvertPeso / usd) / monedas[4].precio);  break;
-        case 'MANA': resultCambio = ((ConvertPeso / usd) / monedas[5].precio);  break;
-        case 'SLP':  resultCambio = ((ConvertPeso / usd) / monedas[6].precio);  break;
-        case 'SOL':  resultCambio = ((ConvertPeso / usd) / monedas[7].precio);  break;
+        case 'UNI':  resultCambio = ((ConvertPeso / usd) / monedas[0].precioCompra);  break;
+        case 'BTN':  resultCambio = ((ConvertPeso / usd) / monedas[1].precioCompra);  break;
+        case 'DAI':  resultCambio = ((ConvertPeso / usd) / monedas[2].precioCompra);  break;
+        case 'ETH':  resultCambio = ((ConvertPeso / usd) / monedas[3].precioCompra);  break;
+        case 'LUNA': resultCambio = ((ConvertPeso / usd) / monedas[4].precioCompra);  break;
+        case 'MANA': resultCambio = ((ConvertPeso / usd) / monedas[5].precioCompra);  break;
+        case 'SLP':  resultCambio = ((ConvertPeso / usd) / monedas[6].precioCompra);  break;
+        case 'SOL':  resultCambio = ((ConvertPeso / usd) / monedas[7].precioCompra);  break;
         case 'USD':  resultCambio = ConvertPeso / usd;               break;
         };
 

@@ -10,3 +10,8 @@ body{
     width: 100%;
 }
 
+#Cripto2 li{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    justify-content: space-between;
+}

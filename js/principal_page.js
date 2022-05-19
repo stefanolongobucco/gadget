@@ -1,10 +1,15 @@
-
-
 let imporMon = 0
 let depo = 0
 let cBtc = 0
 let vBtc = 0
 const usd = 202.7
+
+
+
+
+const monedas = JSON.parse(localStorage.getItem("monedasLocales"));
+ 
+
 
 
 let nombre = localStorage.getItem('nombre');
@@ -36,3 +41,14 @@ localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(depo)
 imporMon = localStorage.getItem('balancePesos'); 
 document.getElementsByClassName("import")[1].innerHTML= imporMon;
 }); 
+
+
+let k = 0; 
+const Cripto2 = document.getElementById("Cripto2");
+for (const moneda of monedas) {  
+let parrafo = document.createElement("li");
+parrafo.innerHTML = `<span>${moneda.nombre}  </span><span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span>`;
+ Cripto2.append(parrafo);
+ k++;
+};
+
