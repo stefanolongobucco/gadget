@@ -31,7 +31,7 @@ const btn = document.getElementById("ingresarDinero");
 
 btn.addEventListener("click",
 function(){  
-depo =  parseFloat(prompt("Cuanto dinero se depositara?"));
+depo =  parseFloat(prompt("Cuanto dinero se depositara?")) || 0;
 let balance = localStorage.getItem('balance');
 localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
 impor = localStorage.getItem('balance');

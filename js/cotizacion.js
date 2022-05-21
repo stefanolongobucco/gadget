@@ -5,12 +5,12 @@ let cBtc = 0
 let vBtc = 0
 const usd = 202.7
 
-const monedas = JSON.parse(localStorage.getItem("monedasLocales"));
+const monedas = JSON.parse(localStorage.getItem("monedasLocales") || []);
 
 function ingresaImpor(){
     x=document.getElementsByClassName("import"); 
         for(var i = 0; i < x.length; i++){
-            document.getElementsByClassName("import")[i].innerHTML= localStorage.getItem('balance');
+            document.getElementsByClassName("import")[i].innerHTML= localStorage.getItem('balance') || [];
         };
     };
     
@@ -22,7 +22,7 @@ function ingresaImpor(){
     function CargarMonedas(){
     x=document.getElementsByClassName("moned"); 
         for(var i = 0; i < x.length; i++){
-        document.getElementsByClassName("moned")[i].innerHTML= monedas[i].precioCompra;
+        document.getElementsByClassName("moned")[i].innerHTML= monedas[i].precioCompra ||[];
     };
     };
     CargarMonedas();
@@ -32,38 +32,41 @@ function ingresaImpor(){
     
     const btn = document.getElementById("ingresarDinero");
     
-    btn.addEventListener("click",
-    function(){  
-    depo =  parseFloat(prompt("Cuanto dinero se depositara?"));
+    btn.addEventListener("click",()=>{  
+    depo =  parseFloat(prompt("Cuanto dinero se depositara?")) || 0;
     let balance = localStorage.getItem('balance');
     localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
     impor = localStorage.getItem('balance');
-    document.getElementsByClassName("import")[0].innerHTML= impor;
+    document.getElementsByClassName("import")[0].innerHTML= impor ||'';
     let balancePesos = localStorage.getItem('balancePesos');
     localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(depo));
     imporMon = localStorage.getItem('balancePesos'); 
-    document.getElementsByClassName("import")[1].innerHTML= imporMon;
+    document.getElementsByClassName("import")[1].innerHTML= imporMon || '';
     }); 
 
 
+    
+    const monCam = document.getElementById("monCam");
+    for (const moneda2 of monedas) {  
+    let parrafo = document.createElement("option");
+    parrafo.innerHTML = `${moneda2.nomRed}`;
+    monCam.append(parrafo);
+    };
+    
 
-function sub(){
-    let ConvertPeso = 0;
-    let resultCambio = 0;
-    let monACam = document.getElementById("monCam").value;
-    ConvertPeso = document.getElementById("peso").value;  
-    switch (monACam){
-        case 'UNI':  resultCambio = ((ConvertPeso / usd) / monedas[0].precioCompra);  break;
-        case 'BTN':  resultCambio = ((ConvertPeso / usd) / monedas[1].precioCompra);  break;
-        case 'DAI':  resultCambio = ((ConvertPeso / usd) / monedas[2].precioCompra);  break;
-        case 'ETH':  resultCambio = ((ConvertPeso / usd) / monedas[3].precioCompra);  break;
-        case 'LUNA': resultCambio = ((ConvertPeso / usd) / monedas[4].precioCompra);  break;
-        case 'MANA': resultCambio = ((ConvertPeso / usd) / monedas[5].precioCompra);  break;
-        case 'SLP':  resultCambio = ((ConvertPeso / usd) / monedas[6].precioCompra);  break;
-        case 'SOL':  resultCambio = ((ConvertPeso / usd) / monedas[7].precioCompra);  break;
-        case 'USD':  resultCambio = ConvertPeso / usd;               break;
-        };
 
-    document.getElementById("resul").value = resultCambio;
 
+    let convert = document.getElementById("peso"); 
+
+    convert.onkeyup = () => {          
+        var monCam2 = document.getElementById("monCam").value;   
+        let convert = document.getElementById("peso").value;              
+        const i = monedas.findIndex( (element) => element.nomRed == monCam2);
+        let resultCambio = 0;
+        resultCambio = ((convert / usd) / monedas[i].precioCompra);  
+        document.getElementById("resul").value = parseFloat(resultCambio) || 0;
+        
 };
+
+
+

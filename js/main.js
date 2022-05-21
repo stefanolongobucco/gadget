@@ -4,28 +4,75 @@ let imporMon = 0
 let depo = 0
 let cBtc = 0
 let vBtc = 0
-const usd = 202.7
+const usd = localStorage.getItem("usd")
 
 
-//localStorage.setItem('balance', 0); 
-//localStorage.setItem('balancePesos', 0); 
+
+
+
+
+
+//se declaran estas variables para poder cargar la fecha de los movimientos
 const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
 
+const movimientos =  JSON.parse(localStorage.getItem("movimientosLocales"))  || [];
+
+
+class nuevoMovimiento {
+    constructor (nomRed,moneda, cantidad,pesos) {
+        this.nomRed = nomRed,
+        this.nombre = moneda;
+        this.fecha = hoy.toLocaleDateString();
+        this.importe = cantidad;
+        this.importePesos = pesos
+    
+    }};
+
+    function sumarMov(...numeros){
+        
+        return numeros.reduce((acc,n) => acc + n)
+        
+    };
+    
+    const mostrarAcum = (y,array)=> {
+        const newArray =[];
+         for (const mov of array){            
+            (mov.nomRed == monedas[y].nomRed) &&
+              newArray.push(mov.importe);                        
+         };        
+         return sumarMov(...newArray);
+        };
+        
+      
+  const acumPesos = (array)=> {
+      const newArray =[];
+       for (const mov of array){  
+            newArray.push(mov.importePesos);                        
+       };        
+       return sumarMov(...newArray);
+      };
+
+
+
+//carga los pesos depositados
 function ingresaImpor(){
 x=document.getElementsByClassName("import"); 
-    for(var i = 0; i < x.length; i++){
-        document.getElementsByClassName("import")[i].innerHTML= localStorage.getItem('balance');
-    };
+    document.getElementsByClassName("import")[0].innerHTML= localStorage.getItem('balance')||0;
+    document.getElementsByClassName("import")[1].innerHTML= (parseFloat(localStorage.getItem('balance')) - (parseFloat(acumPesos(movimientos)) ||0 )) ||0;
+
 };
 
 ingresaImpor();
 
 
-const monedas = JSON.parse(localStorage.getItem("monedasLocales"));
-const misMonedas = JSON.parse(localStorage.getItem("misMonedasLocales"));
+const monedas = JSON.parse(localStorage.getItem("monedasLocales")) || [];
 
 
+for (const moneda2 of monedas) {
+    let j = 0;
+    if(moneda2.seMuestra > 1){monedas[j].seMuestra = 1};
+};
 
 
 function CargarMonedas(){
@@ -43,72 +90,42 @@ CargarMonedas();
 
 const btn = document.getElementById("ingresarDinero");
 
-btn.addEventListener("click",
-function(){  
-depo =  parseFloat(prompt("Cuanto dinero se depositara?"));
+btn.addEventListener("click",() =>{  
+depo =  parseFloat(prompt("Cuanto dinero se depositara?")) || 0;
 let balance = localStorage.getItem('balance');
 localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
 impor = localStorage.getItem('balance');
 document.getElementsByClassName("import")[0].innerHTML= impor;
-let balancePesos = localStorage.getItem('balancePesos');
-localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(depo));
-imporMon = localStorage.getItem('balancePesos'); 
-document.getElementsByClassName("import")[1].innerHTML= imporMon;
+document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-(parseFloat(acumPesos(movimientos))||0));
 }); 
 
 
-const movimientos = [];
-
-
-class nuevoMovimiento {
-    constructor (moneda, cantidad,pesos) {
-        this.nombre = moneda;
-        this.fecha = hoy.toLocaleDateString();
-        this.importe = cantidad;
-        this.importePesos = pesos
-    
-    }};
-
-
-
-    
     
         
- function comprar(y){         
-            misMonedas[y].seMuestra = misMonedas[y].seMuestra + 1;   
-            muestraMoneda[y].seMuestra = muestraMoneda[y].seMuestra + 1;  
-            cBtc =  parseFloat(prompt("Cuantos Cripto quieres comprar?(en pesos)"+`${monedas[y].nomRed}`));
-            if(localStorage.getItem('balancePesos') >= cBtc){           
-                misMonedas[y].acum = misMonedas[y].acum  + ((cBtc/usd) / monedas[y].precioCompra);                   
-                let mostrarAcum =  misMonedas[y].acum                                
-                localStorage.setItem("misMonedasLocales", JSON.stringify(misMonedas));  
-                cargarMisMonedas(y)
-                document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= parseFloat(mostrarAcum); 
-                let balancePesos = localStorage.getItem('balancePesos'); 
-                localStorage.setItem('balancePesos', parseFloat(balancePesos) - parseFloat(cBtc));
-                imporMon = localStorage.getItem('balancePesos');
-                document.getElementsByClassName("import")[1].innerHTML= imporMon;
-                movimientos.push(new nuevoMovimiento(monedas[y].nombre,parseFloat(((cBtc/usd) / monedas[y].precioCompra)),parseFloat(cBtc)));      
-                localStorage.setItem("movimientosLocales", JSON.stringify(movimientos));    
+ function comprar(y){  
+            monedas[y].seMuestra ++;  
+            cBtc =  parseFloat(prompt("Cuantos Cripto quieres comprar?(en pesos)"+`${monedas[y].nomRed}`)) ||0;
+            if((localStorage.getItem('balance')-(parseFloat(acumPesos(movimientos)||0))) >= cBtc){  
+                movimientos.push(new nuevoMovimiento(monedas[y].nomRed,monedas[y].nombre,parseFloat(((cBtc/usd) / monedas[y].precioCompra)),parseFloat(cBtc)));      
+                let muestrarAcum = parseFloat(mostrarAcum(y,movimientos)||0);                             
+                cargarMisMonedas(y);                  
+                document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= parseFloat(muestrarAcum) ||0; 
+                ingresaImpor();
+                localStorage.setItem("movimientosLocales", JSON.stringify(movimientos));
+                localStorage.setItem("monedasLocales", JSON.stringify(monedas));              
         }else{alert("No tiene suficiente dinero en su cuenta")};        
         };
     
   function vender(y){
-        cBtc =  parseFloat(prompt("Cuantos Criptos quieres vender?(en pesos)"));
-        if(misMonedas[y].acum >= ((cBtc/usd) / monedas[y].precioCompra)){
-            misMonedas[y].acum = misMonedas[y].acum  - ((cBtc/usd) / monedas[y].precioCompra);
-            document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= misMonedas[y].acum; 
-            let balancePesos = localStorage.getItem('balancePesos'); 
-            localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(cBtc));
-            imporMon = localStorage.getItem('balancePesos');
-            document.getElementsByClassName("import")[1].innerHTML= imporMon;
-            movimientos.push(new nuevoMovimiento(monedas[y].nombre,parseFloat(-((cBtc/usd) / monedas[y].precioCompra)),parseFloat(-cBtc)));
+        cBtc =  parseFloat(prompt("Cuantos Criptos quieres vender?(en pesos)")) || 0;
+        if(parseFloat(mostrarAcum(y,movimientos)||0) >= ((cBtc/usd) / monedas[y].precioCompra)){   
+            movimientos.push(new nuevoMovimiento(monedas[y].nomRed,monedas[y].nombre,parseFloat(-((cBtc/usd) / monedas[y].precioCompra)),parseFloat(-cBtc)));         
+            document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= parseFloat(mostrarAcum(y,movimientos)||0) ||'';                 
             localStorage.setItem("movimientosLocales", JSON.stringify(movimientos));  
-            localStorage.setItem("misMonedasLocales", JSON.stringify(misMonedas)); 
-
-                if(misMonedas[y].acum == 0){ 
-                    misMonedas[y].seMuestra =0;   
-                    muestraMoneda[y].seMuestra = 0;     
+            ingresaImpor();
+                if(parseFloat(mostrarAcum(y,movimientos)||0) == 0){ 
+                    monedas[y].seMuestra =0;    
+                    localStorage.setItem("monedasLocales", JSON.stringify(monedas));       
                     borrar(y);  };     
 
             }else{alert("No tiene suficiente dinero en su cuenta")};      
@@ -122,34 +139,21 @@ class nuevoMovimiento {
         };  
     
     
-        class mostrarMonedas {
-            constructor (monedas) {
-                this.nombre = monedas;
-                this.seMuestra = 0
-            
-            }};
-
-        const muestraMoneda = []
-        for(let y=0; y < monedas.length; y++){  muestraMoneda.push(new mostrarMonedas(monedas[y].nomRed)); };
-
-
+    
         
     function cargarMisMonedas(o){
     
     const Cripto = document.getElementById("Cripto");
-      
-    if((misMonedas[o].acum > 0)&&(((muestraMoneda[o].seMuestra == 0)&&(misMonedas[o].seMuestra >=1))||
-    ((muestraMoneda[o].seMuestra == 1)&&(misMonedas[o].seMuestra == 1)))
-    ){
+    if((monedas[o].seMuestra==1))
+    {    
+    let acum = parseFloat(mostrarAcum(o,movimientos)||0)
     let parrafo = document.createElement("li");
-    parrafo.innerHTML = `<span>${monedas[o].nomRed}  </span> <span class="${monedas[o].nomRed}">${misMonedas[o].acum}</span>                    
+    parrafo.innerHTML = `<span>${monedas[o].nomRed}  </span> <span class="${monedas[o].nomRed}">${acum}</span>                    
                          <span><button onclick="comprarCripto(${o})">COMPRAR</button></span>
                          <span><button onclick="venderCripto(${o})">VENDER</button></span>`;
      Cripto.append(parrafo);
      
     };
-
-
     }; 
 
 
@@ -163,7 +167,7 @@ function borrar(o){
 };
 
 
-    for(let y=0; y < misMonedas.length; y++){    
+    for(let y=0; y < monedas.length; y++){    
                   cargarMisMonedas(y);
         };
 
@@ -182,83 +186,3 @@ parrafo.innerHTML = `<span>${moneda2.nomRed}  </span><span>${moneda2.precioCompr
 };
 
 
- 
-
-
-
-
-
-
-/* class cripto {
-    constructor (nombre, precioCompra) {
-        this.nombre = nombre;
-        this.precioCompra = precioCompra;
-        this.acum   =  0;
-        this.seMuestra = 0;
-    }
-
-
-    
-    comprar(y) {         
-        this.seMuestra = this.seMuestra + 1;        
-        cBtc =  parseFloat(prompt("Cuantos Cripto quieres comprar?(en pesos)"+`${monedas[y].nomRed}`));
-        if(localStorage.getItem('balancePesos') >= cBtc){           
-        this.acum = this.acum  + ((cBtc/usd) / monedas[y].precioCompra);   
-        cargarMisMonedas(y);
-        document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= misMonedas[y].acum; 
-        let balancePesos = localStorage.getItem('balancePesos'); 
-        localStorage.setItem('balancePesos', parseFloat(balancePesos) - parseFloat(cBtc));
-        imporMon = localStorage.getItem('balancePesos');
-        document.getElementsByClassName("import")[1].innerHTML= imporMon;
-       // movimientos.push(new nuevoMovimiento(monedas[y].nombre,parseFloat(cBtc)));      
-      //  localStorage.setItem("movimientosLocales", JSON.stringify(movimientos));   
-    }else{alert("No tiene suficiente dinero en su cuenta")};        
-    ;}
-
-    vender(y){
-    cBtc =  parseFloat(prompt("Cuantos Criptos quieres vender?(en pesos)"));
-    if(this.acum >= ((cBtc/usd) / monedas[y].precioCompra)){
-        this.acum = this.acum  - ((cBtc/usd) / monedas[y].precioCompra);
-        document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= misMonedas[y].acum; 
-        let balancePesos = localStorage.getItem('balancePesos'); 
-        localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(cBtc));
-        imporMon = localStorage.getItem('balancePesos');
-        document.getElementsByClassName("import")[1].innerHTML= imporMon;
-        movimientos.push(new nuevoMovimiento(monedas[y].nombre,parseFloat(-cBtc)));           
-       if(misMonedas[y].acum == 0){this.seMuestra = -1; cargarMisMonedas(y); this.seMuestra =  0;};
-       
-        }else{alert("No tiene suficiente dinero en su cuenta")};      
-      };
-    };
-
-
-
-
-
-for(let y=0; y < monedas.length; y++){   
-misMonedas.push(new cripto(monedas[y].nomRed,monedas[y].precioCompra));
-};
-
-
-
-
-function cargarMisMonedas(o){
-
-const Cripto = document.getElementById("Cripto");
-
-if((misMonedas[o].acum > 0)&&(misMonedas[o].seMuestra == 1)){
-let parrafo = document.createElement("li");
-parrafo.innerHTML = `<span>${monedas[o].nomRed}  </span> <span class="${monedas[o].nomRed}">0.00000</span>                    
-                     <span><button onclick="comprarCripto(${o})">COMPRAR</button></span>
-                     <span><button onclick="venderCripto(${o})">VENDER</button></span>`;
- Cripto.append(parrafo);};
- 
-
- if(misMonedas[o].seMuestra == -1){
-   
-                         elemento = document.getElementsByClassName(`${monedas[o].nomRed}`)[0]
-                         padre = elemento.parentNode;
-                         padre2 = padre.parentNode;
-                          padre2.removeChild(padre);
- };
-};  */
