@@ -1,0 +1,12 @@
+#movimientosCripto li{
+    display: grid;
+    grid-template-rows: 90% 10%;
+}
+
+
+#movimientosCripto li .mov_l1{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    justify-content: space-between;
+    padding: 5px;
+}

@@ -31,19 +31,17 @@ function ingresaImpor(){
     
     
     const btn = document.getElementById("ingresarDinero");
-    
-    btn.addEventListener("click",()=>{  
+
+    btn.addEventListener("click",() =>{  
     depo =  parseFloat(prompt("Cuanto dinero se depositara?")) || 0;
+    if (depo > 0){
     let balance = localStorage.getItem('balance');
     localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
     impor = localStorage.getItem('balance');
-    document.getElementsByClassName("import")[0].innerHTML= impor ||'';
-    let balancePesos = localStorage.getItem('balancePesos');
-    localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(depo));
-    imporMon = localStorage.getItem('balancePesos'); 
-    document.getElementsByClassName("import")[1].innerHTML= imporMon || '';
+    document.getElementsByClassName("import")[0].innerHTML= impor;
+    document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-(parseFloat(acumPesos(movimientos))||0));
+    }else{alert("El importe no puede ser 0 ni menor a 0")};  
     }); 
-
 
     
     const monCam = document.getElementById("monCam");

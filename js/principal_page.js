@@ -29,17 +29,15 @@ ingresaImpor();
 
 const btn = document.getElementById("ingresarDinero");
 
-btn.addEventListener("click",
-function(){  
+btn.addEventListener("click",() =>{  
 depo =  parseFloat(prompt("Cuanto dinero se depositara?")) || 0;
+if (depo > 0){
 let balance = localStorage.getItem('balance');
 localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
 impor = localStorage.getItem('balance');
 document.getElementsByClassName("import")[0].innerHTML= impor;
-let balancePesos = localStorage.getItem('balancePesos');
-localStorage.setItem('balancePesos', parseFloat(balancePesos) + parseFloat(depo));
-imporMon = localStorage.getItem('balancePesos'); 
-document.getElementsByClassName("import")[1].innerHTML= imporMon;
+document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-(parseFloat(acumPesos(movimientos))||0));
+}else{alert("El importe no puede ser 0 ni menor a 0")};  
 }); 
 
 
@@ -47,7 +45,7 @@ let k = 0;
 const Cripto2 = document.getElementById("Cripto2");
 for (const moneda of monedas) {  
 let parrafo = document.createElement("li");
-parrafo.innerHTML = `<span>${moneda.nombre}  </span><span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span>`;
+parrafo.innerHTML = `<div class="monD"><span class="monP">${moneda.nombre} ${moneda.porcentaje}</span><span>${moneda.nomRed}</span> </div> <span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span>`;
  Cripto2.append(parrafo);
  k++;
 };

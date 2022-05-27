@@ -15,17 +15,19 @@ const usd = localStorage.getItem("usd")
 //se declaran estas variables para poder cargar la fecha de los movimientos
 const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
-
+var options = {weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", hour12:"false"};
 const movimientos =  JSON.parse(localStorage.getItem("movimientosLocales"))  || [];
+
 
 
 class nuevoMovimiento {
     constructor (nomRed,moneda, cantidad,pesos) {
         this.nomRed = nomRed,
         this.nombre = moneda;
-        this.fecha = hoy.toLocaleDateString();
+        this.fecha = hoy.toLocaleString("es-ES", options);
         this.importe = cantidad;
-        this.importePesos = pesos
+        this.importePesos = pesos;
+        this.orden = Date.now()
     
     }};
 
@@ -92,11 +94,13 @@ const btn = document.getElementById("ingresarDinero");
 
 btn.addEventListener("click",() =>{  
 depo =  parseFloat(prompt("Cuanto dinero se depositara?")) || 0;
+if (depo > 0){
 let balance = localStorage.getItem('balance');
 localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
 impor = localStorage.getItem('balance');
 document.getElementsByClassName("import")[0].innerHTML= impor;
 document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-(parseFloat(acumPesos(movimientos))||0));
+}else{alert("El importe no puede ser 0 ni menor a 0")};  
 }); 
 
 
@@ -105,6 +109,7 @@ document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-
  function comprar(y){  
             monedas[y].seMuestra ++;  
             cBtc =  parseFloat(prompt("Cuantos Cripto quieres comprar?(en pesos)"+`${monedas[y].nomRed}`)) ||0;
+            if (cBtc > 0){
             if((localStorage.getItem('balance')-(parseFloat(acumPesos(movimientos)||0))) >= cBtc){  
                 movimientos.push(new nuevoMovimiento(monedas[y].nomRed,monedas[y].nombre,parseFloat(((cBtc/usd) / monedas[y].precioCompra)),parseFloat(cBtc)));      
                 let muestrarAcum = parseFloat(mostrarAcum(y,movimientos)||0);                             
@@ -114,10 +119,12 @@ document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-
                 localStorage.setItem("movimientosLocales", JSON.stringify(movimientos));
                 localStorage.setItem("monedasLocales", JSON.stringify(monedas));              
         }else{alert("No tiene suficiente dinero en su cuenta")};        
-        };
+    }else{alert("El importe no puede ser 0 ni menor a 0")};   
+    };
     
   function vender(y){
         cBtc =  parseFloat(prompt("Cuantos Criptos quieres vender?(en pesos)")) || 0;
+        if (cBtc > 0){
         if(parseFloat(mostrarAcum(y,movimientos)||0) >= ((cBtc/usd) / monedas[y].precioCompra)){   
             movimientos.push(new nuevoMovimiento(monedas[y].nomRed,monedas[y].nombre,parseFloat(-((cBtc/usd) / monedas[y].precioCompra)),parseFloat(-cBtc)));         
             document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= parseFloat(mostrarAcum(y,movimientos)||0) ||'';                 
@@ -128,7 +135,8 @@ document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-
                     localStorage.setItem("monedasLocales", JSON.stringify(monedas));       
                     borrar(y);  };     
 
-            }else{alert("No tiene suficiente dinero en su cuenta")};      
+            }else{alert("No tiene suficiente dinero en su cuenta")};    
+        }else{alert("El importe no puede ser 0 ni menor a 0")};    
           };
         
           function comprarCripto(y){

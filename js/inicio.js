@@ -12,13 +12,13 @@ const monedas = [];
 const loading= document.getElementById("loading");  
                
 class nuevaCripto {
-    constructor (id,nombre,simbolo, precio,porcenteje) {
+    constructor (id,nombre,simbolo, precio,porcentaje) {
         this.id = id;
         this.nombre = nombre,
         this.nomRed = simbolo;
         this.precioCompra = precio*1.04;
         this.precioVenta = precio;
-        this.porcenteje = porcenteje;
+        this.porcentaje = porcentaje;
         this.seMuestra = 0
     
     }};
@@ -36,7 +36,7 @@ fetch('https://coinlore-cryptocurrency.p.rapidapi.com/api/tickers/?start=0&limit
 	.then(response => response.json())
 	.then(response => {
         for (const moneda of response.data){
-            monedas.push(new nuevaCripto(moneda.id,moneda.name,moneda.symbol,moneda.price_usd,moneda.porcent_change_24h));
+            monedas.push(new nuevaCripto(moneda.id,moneda.name,moneda.symbol,moneda.price_usd,moneda.percent_change_24h));
                    }
             //carga de las monedas en un localstorage para poder usarlo en el resto de los js
             localStorage.setItem("monedasLocales", JSON.stringify(monedas));            
@@ -66,7 +66,7 @@ fetch('https://coinlore-cryptocurrency.p.rapidapi.com/api/tickers/?start=0&limit
 
 
 //Esta variable se utiliza para cargar todas las compras/ventas de las monedas
-const movimientos = [{ nombre : 0, fecha : 0,   importe : 0,  importePesos : 0}]
+const movimientos = [{ nombre : 0, fecha : 0,   importe : 0,  importePesos : 0, orden : 0}]
 localStorage.setItem("movimientosLocales", JSON.stringify(movimientos));  
 
 

@@ -1,5 +1,30 @@
+.usuario{
+    padding: 1em;
+    font-size: 1.5em;
+}
+.mercado p{
+    font-size: 25px;
+    padding: 15px;
+}
+
 #Cripto2 li{
     display: grid;
     grid-template-columns: 50% 25% 25%;
     justify-content: space-between;
+    border-radius: 14px;
+    background: linear-gradient(225deg, #201f26, #25242d);
+    box-shadow:  -6px 6px 12px #222128,
+                 6px -6px 12px #24232c;
+    padding: 2em;
+    color: white;
 }
+
+ .monD{
+    display: grid;
+    grid-template-rows: 50% 50%;
+ }
+ .monP{
+    display: grid;
+    grid-template-columns: 50% 50% 50% 50%;
+ }
+
