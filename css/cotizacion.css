@@ -1,0 +1,36 @@
+.main_content{
+    display: grid;
+    grid-template-rows: 40% 60%;
+}
+
+.conversor h2{
+    margin: 1em;
+    font-size: 30px;
+}
+
+
+.conversor form{
+    margin: 1em;
+    font-size: 20px;
+    display: inline-flex;
+
+}
+
+
+
+input{
+background-color: #7f7f82;
+border-top: 0;
+border-right: 0;
+border-left: 0;
+border-bottom-width:5px; 
+border-color:black ;
+outline: none;
+}::placeholder { color:black; }
+
+form select{
+    font-size: 20px;
+    background-color: #7f7f82;
+    border: 0;
+    outline: none;
+    }

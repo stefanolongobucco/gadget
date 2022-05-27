@@ -68,3 +68,13 @@ function ingresaImpor(){
 
 
 
+let k = 0; 
+const Cripto2 = document.getElementById("Cripto2");
+for (const moneda2 of monedas) {  
+let parrafo = document.createElement("li");
+parrafo.innerHTML = `<span>${moneda2.nomRed}  </span><span>${moneda2.precioCompra}   </span>                    
+                     <span><button onclick="comprarCripto(${k})">COMPRAR</button></span>
+                     <span><button onclick="venderCripto(${k})">VENDER</button></span>`;
+ Cripto2.append(parrafo);
+ k++;
+};

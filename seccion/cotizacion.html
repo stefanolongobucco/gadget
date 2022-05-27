@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel</title>
+    <link rel="stylesheet" href="../css/cotizacion.css">
     <link rel="stylesheet" href="../css/nav.css">
 </head>
 <body>
@@ -49,17 +50,22 @@
     </div>
     <div class="main_content">
         <div class="conversor">
-            <h2>Conversor de pesos$ a: </h2>
+            <h2>Conversor</h2>
+
             <form name="form" action="" method="get">
-                <input type="number" name="Peso" id="peso"> 
-                <p>Elige una moneda: 
-                    <select name="Cripto" id="monCam">
-                    </select>
-                </p>                             
+                <div> <p> ARS: <input type="number" name="Peso" id="peso" placeholder="0.00"></p></div>
+                <div><select name="Cripto" id="monCam"> <input type="number" name="resul" id="resul" placeholder="0.00" ></select></div>
+                                             
             </form>   
-            <input type="number" name="resul" id="resul">
+           
 
         </div>
+        <div class="mercado">
+            <p>Mercado</p>
+            <ul id="Cripto2">
+            </ul>
+
+        </div>      
     </div>
 </div>
 </div>

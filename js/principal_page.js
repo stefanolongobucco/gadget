@@ -45,7 +45,10 @@ let k = 0;
 const Cripto2 = document.getElementById("Cripto2");
 for (const moneda of monedas) {  
 let parrafo = document.createElement("li");
-parrafo.innerHTML = `<div class="monD"><span class="monP">${moneda.nombre} ${moneda.porcentaje}</span><span>${moneda.nomRed}</span> </div> <span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span>`;
+if(moneda.porcentaje >=0){
+    parrafo.innerHTML = `<div class="monD"><span>${moneda.nombre} <span class="monP">${moneda.porcentaje}</span></span><span>${moneda.nomRed}</span> </div>   <div class="precio"><span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span></div>`;
+}else{parrafo.innerHTML = `<div class="monD"><span>${moneda.nombre} <span class="monN">${moneda.porcentaje}</span></span><span>${moneda.nomRed}</span> </div> <div class="precio"><span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span></div>`;}
+
  Cripto2.append(parrafo);
  k++;
 };
