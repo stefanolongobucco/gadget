@@ -23,8 +23,8 @@ particlesJS(
             },
             "image": {
               "src": "css/img/bitcoin.png",
-              "width": 100,
-              "height": 100
+              "width": 400,
+              "height": 400
             }
           },
           "opacity": {
@@ -38,7 +38,7 @@ particlesJS(
             }
           },
           "size": {
-            "value": 20,
+            "value": 35,
             "random": true,
             "anim": {
               "enable": false,
