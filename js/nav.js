@@ -19,7 +19,11 @@ function animateBars(){
 }
 
 function abrirDeposito(){
-    deposito.classList.toggle("activedeposito");
+    deposito.classList.toggle("activedeposito");     
+    document.getElementById("depos").value = '$ 100.00 ARS' ; 
+    document.getElementById("depMonImp").innerHTML= '$ 0.00 ARS' ; 
+    document.getElementById("depComImp").innerHTML= '$ 0.00 ARS'; 
+    document.getElementById("depTotImp").innerHTML= '$ 0.00 ARS';  
 } 
 
 
@@ -55,7 +59,7 @@ abrirDeposito();
 
 
 let impor = 0
-let imporMon = 0
+let imporMon = 0 
 let depo = 0
 let cBtc = 0
 let vBtc = 0
@@ -67,7 +71,6 @@ const hoy = new Date(tiempoTranscurrido);
 var options = {weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", hour12:"false"};
 const movimientos =  JSON.parse(localStorage.getItem("movimientosLocales"))  || [];
 const monedas = JSON.parse(localStorage.getItem("monedasLocales")) || [];
-
 
 
 
@@ -89,16 +92,20 @@ class nuevoMovimiento {
         
     };
     
+
     const mostrarAcum = (y,array)=> {
         const newArray =[];
          for (const mov of array){            
             (mov.nomRed == monedas[y].nomRed) &&
-              newArray.push(mov.importe);                        
+              newArray.push(mov.importe);  
+              console.log(newArray)                      
          };        
          return sumarMov(...newArray);
         };
         
       
+
+
   const acumPesos = (array)=> {
       const newArray =[];
        for (const mov of array){  
@@ -107,49 +114,36 @@ class nuevoMovimiento {
        return sumarMov(...newArray);
       }; 
 
+
+let URLactual = window.location.href; 
+
+
+      function ingresaImpor(){
+        document.getElementsByClassName("import")[0].innerHTML= localStorage.getItem('balance')||0;
+
+        let posicionWallet = URLactual.indexOf("wallet");
+        if (posicionWallet !== -1){
+             document.getElementsByClassName("import")[1].innerHTML= (parseFloat(localStorage.getItem('balance')) - (parseFloat(acumPesos(movimientos)) ||0 )) ||0;
+            };
+        let posicionCompra = URLactual.indexOf("ComprarCripto");
+        if (posicionCompra !== -1){
+             document.getElementsByClassName("fondosCV")[0].innerHTML=`Usar todos tus Fondos($${(parseFloat(localStorage.getItem('balance')) - (parseFloat(acumPesos(movimientos)) ||0 )) ||0.00})`;
+            };
+        };
+    
+    ingresaImpor();   
      
-     
-let URLactual = window.location.href;       
-function comprar(y){  
-    monedas[y].seMuestra ++;  
-    cBtc =  parseFloat(prompt("Cuantos Cripto quieres comprar?(en pesos)"+`${monedas[y].nomRed}`)) ||0;
-    if (cBtc > 0){
-    if((localStorage.getItem('balance')-(parseFloat(acumPesos(movimientos)||0))) >= cBtc){  
-        movimientos.push(new nuevoMovimiento(monedas[y].nomRed,monedas[y].nombre,parseFloat(((cBtc/usd) / monedas[y].precioCompra)),parseFloat(cBtc)));      
-        let muestrarAcum = parseFloat(mostrarAcum(y,movimientos)||0);          
-        let posicion = URLactual.indexOf("wallet");
-        if (posicion !== -1){
-        document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= parseFloat(muestrarAcum) ||0; }
-        ingresaImpor();
-        localStorage.setItem("movimientosLocales", JSON.stringify(movimientos));
-        localStorage.setItem("monedasLocales", JSON.stringify(monedas));              
-}else{alert("No tiene suficiente dinero en su cuenta")};        
-}else{alert("El importe no puede ser 0 ni menor a 0")};   
-};
+      
 
-function vender(y){
-cBtc =  parseFloat(prompt("Cuantos Criptos quieres vender?(en pesos)")) || 0;
-if (cBtc > 0){
-if(parseFloat(mostrarAcum(y,movimientos)||0) >= ((cBtc/usd) / monedas[y].precioVenta)){   
-    let posicion = URLactual.indexOf("wallet");
-    if (posicion !== -1){
-    movimientos.push(new nuevoMovimiento(monedas[y].nomRed,monedas[y].nombre,parseFloat(-((cBtc/usd) / monedas[y].precioVenta)),parseFloat(-cBtc)));  }       
-    document.getElementsByClassName(`${monedas[y].nomRed}`)[0].innerHTML= parseFloat(mostrarAcum(y,movimientos)||0) ||'';                 
-    localStorage.setItem("movimientosLocales", JSON.stringify(movimientos));  
-    ingresaImpor();
-        if(parseFloat(mostrarAcum(y,movimientos)||0) == 0){ 
-            monedas[y].seMuestra =0;    
-            localStorage.setItem("monedasLocales", JSON.stringify(monedas));       
-            borrar(y);  
-        };     
 
-    }else{alert("No tiene suficiente dinero en su cuenta")};    
-}else{alert("El importe no puede ser 0 ni menor a 0")};    
-  };
 
-  function comprarCripto(y){
-    comprar(y);  
+function comprarCripto(y){
+    localStorage.setItem('idMon', y);
+    localStorage.setItem('tipAcc','Comprar');
+    location.href="ComprarCripto.html";  
 };
 function venderCripto(y){
-    vender(y);
+    localStorage.setItem('idMon', y);
+    localStorage.setItem('tipAcc','Vender');
+    location.href="ComprarCripto.html";
 };  

@@ -1,12 +1,5 @@
-/* let impor = 0
-let imporMon = 0
-let depo = 0
-let cBtc = 0
-let vBtc = 0
-const usd = 202.7
 
-const monedas = JSON.parse(localStorage.getItem("monedasLocales") || []);
- */
+
 function ingresaImpor(){
     x=document.getElementsByClassName("import"); 
         document.getElementsByClassName("import")[0].innerHTML= localStorage.getItem('balance')||0;       
@@ -16,30 +9,6 @@ function ingresaImpor(){
     
     
    
-    
-   /*  function CargarMonedas(){
-    x=document.getElementsByClassName("moned"); 
-        for(var i = 0; i < x.length; i++){
-        document.getElementsByClassName("moned")[i].innerHTML= monedas[i].precioCompra ||[];
-    };
-    };
-    CargarMonedas();  */
-     
-    
-    
-    
-   /*  const btn = document.getElementById("ingresarDinero");
-
-    btn.addEventListener("click",() =>{  
-    depo =  parseFloat(prompt("Cuanto dinero se depositara?")) || 0;
-    if (depo > 0){
-    let balance = localStorage.getItem('balance');
-    localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
-    impor = localStorage.getItem('balance');
-    document.getElementsByClassName("import")[0].innerHTML= impor;
-    document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-(parseFloat(acumPesos(movimientos))||0));
-    }else{alert("El importe no puede ser 0 ni menor a 0")};  
-    });  */
 
     
     const monCam = document.getElementById("monCam");

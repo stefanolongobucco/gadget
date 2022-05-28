@@ -1,0 +1,70 @@
+.header{
+    z-index: 9999;
+}
+
+.main_content{
+position: relative;
+}
+
+.movimientoCV{
+position: absolute;
+width:60%;
+height:70%;
+top: 50%;
+left: 50%;
+transform:translate(-50%, -50%) ;
+display: grid;
+justify-content: center;
+align-items: center;
+}
+
+.titleCV{
+    font-size: 35px;
+}
+
+.fondosCV{
+    color: blue;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+p{
+   text-align: center;
+}
+
+
+.importCV{
+    display: grid;
+    gap: 5px;
+}
+
+
+
+#fondo{   
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom-width:3px; 
+    border-color:#EC994B ;
+    outline: none;
+    font-size: 30px;
+    text-align: center;
+    color: black;
+}#fondo::placeholder { color:gray; }
+
+
+.realizarCV{
+    font-size: 20px;
+    background:#EC994B;
+    color: #F1EEE9;
+    padding: 10px;
+    border-radius: 1.5em;
+    cursor: pointer;
+    }.realizarCV:hover {
+        transition: all 0.3s ease 0s;
+        background-color: #d37d2d; }
+
+
+.rotar{
+    cursor: pointer;
+}
