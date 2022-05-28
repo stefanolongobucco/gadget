@@ -1,4 +1,4 @@
-
+/* 
 let impor = 0
 let imporMon = 0
 let depo = 0
@@ -16,11 +16,11 @@ const usd = localStorage.getItem("usd")
 const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
 var options = {weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", hour12:"false"};
-const movimientos =  JSON.parse(localStorage.getItem("movimientosLocales"))  || [];
+const movimientos =  JSON.parse(localStorage.getItem("movimientosLocales"))  || []; */
 
 
 
-class nuevoMovimiento {
+/* class nuevoMovimiento {
     constructor (nomRed,moneda, cantidad,pesos) {
         this.nomRed = nomRed,
         this.nombre = moneda;
@@ -31,7 +31,8 @@ class nuevoMovimiento {
     
     }};
 
-    function sumarMov(...numeros){
+
+     function sumarMov(...numeros){
         
         return numeros.reduce((acc,n) => acc + n)
         
@@ -53,7 +54,7 @@ class nuevoMovimiento {
             newArray.push(mov.importePesos);                        
        };        
        return sumarMov(...newArray);
-      };
+      };  */
 
 
 
@@ -67,14 +68,15 @@ x=document.getElementsByClassName("import");
 
 ingresaImpor();
 
+/* 
+const monedas = JSON.parse(localStorage.getItem("monedasLocales")) || []; */
 
-const monedas = JSON.parse(localStorage.getItem("monedasLocales")) || [];
 
-
-for (const moneda2 of monedas) {
+/*  for (const moneda2 of monedas) {
     let j = 0;
     if(moneda2.seMuestra > 1){monedas[j].seMuestra = 1};
-};
+
+};  */
 
 
 function CargarMonedas(){
@@ -90,23 +92,17 @@ CargarMonedas();
 
 
 
-const btn = document.getElementById("ingresarDinero");
+const btn = document.getElementById("realPed");
 
 btn.addEventListener("click",() =>{  
-depo =  parseFloat(prompt("Cuanto dinero se depositara?")) || 0;
-if (depo > 0){
-let balance = localStorage.getItem('balance');
-localStorage.setItem('balance', parseFloat(balance) + parseFloat(depo));
 impor = localStorage.getItem('balance');
-document.getElementsByClassName("import")[0].innerHTML= impor;
 document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-(parseFloat(acumPesos(movimientos))||0));
-}else{alert("El importe no puede ser 0 ni menor a 0")};  
 }); 
-
+ 
 
     
         
- function comprar(y){  
+/*  function comprar(y){  
             monedas[y].seMuestra ++;  
             cBtc =  parseFloat(prompt("Cuantos Cripto quieres comprar?(en pesos)"+`${monedas[y].nomRed}`)) ||0;
             if (cBtc > 0){
@@ -145,24 +141,32 @@ document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-
         function venderCripto(y){
             vender(y);
         };  
-    
+     */
     
     
         
-    function cargarMisMonedas(o){
-    
-    const Cripto = document.getElementById("Cripto");
-    if((monedas[o].seMuestra==1))
-    {    
-    let acum = parseFloat(mostrarAcum(o,movimientos)||0)
-    let parrafo = document.createElement("li");
-    parrafo.innerHTML = `<span>${monedas[o].nomRed}  </span> <span class="${monedas[o].nomRed}">${acum}</span>                    
-                         <span><button onclick="comprarCripto(${o})">COMPRAR</button></span>
-                         <span><button onclick="venderCripto(${o})">VENDER</button></span>`;
-     Cripto.append(parrafo);
-     
-    };
-    }; 
+        let j = 0;
+        for (const moneda2 of monedas) { 
+          if(moneda2.seMuestra > 1){monedas[j].seMuestra = 1};
+          j++;
+      
+      }; 
+      
+  
+        function cargarMisMonedas(o){
+      
+          const Cripto = document.getElementById("Cripto");
+          if((monedas[o].seMuestra==1))
+          {    
+          let acum = parseFloat(mostrarAcum(o,movimientos)||0)
+          let parrafo = document.createElement("li");
+          parrafo.innerHTML = `<span>${monedas[o].nomRed}  </span> <span class="${monedas[o].nomRed}">${acum}</span>                    
+                               <button class = "botonC1" onclick="comprarCripto(${o})">COMPRAR</button>
+                               <button class = "botonC2" onclick="venderCripto(${o})">VENDER</button>`;
+           Cripto.append(parrafo);
+           
+          };
+          }; 
 
 
 
@@ -182,7 +186,7 @@ function borrar(o){
 
 
 
-let k = 0; 
+/* let k = 0; 
 const Cripto2 = document.getElementById("Cripto2");
 for (const moneda2 of monedas) {  
 let parrafo = document.createElement("li");
@@ -192,5 +196,5 @@ parrafo.innerHTML = `<span>${moneda2.nomRed}  </span><span>${moneda2.precioCompr
  Cripto2.append(parrafo);
  k++;
 };
-
+ */
 

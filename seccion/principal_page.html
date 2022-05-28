@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="../css/nav.css">
 </head>
 <body>
+    <div class="deposito">
+        <div class="depIngre"><input type="number" name="depos" id="depos" placeholder="$ 100.00 ARS" ></div>
+        <div class="depCal">
+            <div class="depMon">Monto</div><div id="depMonImp">$ 0.00 ARS</div>
+            <div class="depCom">Comisión</div><div id="depComImp">$ 0.00 ARS</div>
+            <hr class="hr">
+            <div class="depTot">Total</div><div id="depTotImp">0.00</div>
+        </div>
+        <div class="buttons">
+            <button class="realPed" id="realPed">Realizar Deposito</button>
+            <button class="volPed">Volver</button>
+        </div> 
+    </div>
 <div class="content__principal"> 
 <header class="header">    
     <div class="logo-nav">
@@ -33,7 +46,7 @@
                 <button id="ingresarDinero">Depositar</button>
             </div>   
             <div class="comprar__nav">                                
-                <button id="comprarCripto"><a href="../seccion/wallet.html">Comprar</a></button>
+                <button id="comprarCripto"><a href="../seccion/cotizacion.html">Comprar</a></button>
             </div>  
         </div> 
         <div class="nav__icon">   
@@ -54,13 +67,15 @@
             <p>Mercado</p>            
             <ul id="Cripto2">
                 <li><span>Moneda </span> <div class="precio"><span>Precio Compra </span> <span>Precio venta  </span><div></li>
-            </ul>
-
+            </ul>           
         </div> 
+        <div id="vermas">
+            <a class="vermas" href="../seccion/cotizacion.html"> ver mas</a>
+        </div>
     </div>
 </div>
 </div>
-<script src="../js/principal_page.js"></script>
 <script src="../js/nav.js"></script>
+<script src="../js/principal_page.js"></script>
 </body>
 </html>

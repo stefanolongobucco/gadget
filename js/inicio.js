@@ -32,7 +32,7 @@ const options = {
 };
 
 
-fetch('https://coinlore-cryptocurrency.p.rapidapi.com/api/tickers/?start=0&limit=50', options)
+fetch('https://coinlore-cryptocurrency.p.rapidapi.com/api/tickers/?start=0&limit=100', options)
 	.then(response => response.json())
 	.then(response => {
         for (const moneda of response.data){
@@ -48,14 +48,14 @@ fetch('https://coinlore-cryptocurrency.p.rapidapi.com/api/tickers/?start=0&limit
          loading.classList.remove('show');
          loading.remove();
          monedas =[
-            {id : 1, nombre : 'Uniswap', nomRed : 'UNI', precioCompra : 8.97, precioVenta : 7.56, seMuestra: 0},
-            {id : 2, nombre : 'Bitcoin', nomRed : 'BTN', precioCompra : 39559.94 , precioVenta : 39540.54, seMuestra: 0},
-            {id : 3, nombre : 'Dai', nomRed : 'DAI', precioCompra : 1 , precioVenta : 1.2 , seMuestra: 0},
-            {id : 4, nombre : 'Etheriun', nomRed : 'ETH', precioCompra : 2937.68 , precioVenta :2925.54 , seMuestra: 0},
-            {id : 5, nombre : 'Terra Luna', nomRed : 'LUNA', precioCompra : 91.33 , precioVenta :85.87 , seMuestra: 0},
-            {id : 6, nombre : 'Decentraland ', nomRed : 'MANA', precioCompra : 2.01 , precioVenta :1.90 , seMuestra: 0},
-            {id : 7, nombre : 'Smooth Love Potion', nomRed : 'SLP', precioCompra: 0.02 , precioVenta :0.1 , seMuestra: 0},
-            {id : 8, nombre : 'Solana', nomRed : 'SOL', precioCompra : 100.94 , precioVenta :97.250, seMuestra: 0}
+            {id : 1, nombre : 'Uniswap', nomRed : 'UNI', precioCompra : 8.97, precioVenta : 7.56, seMuestra: 0, porcentaje: 0.00},
+            {id : 2, nombre : 'Bitcoin', nomRed : 'BTN', precioCompra : 39559.94 , precioVenta : 39540.54, seMuestra: 0, porcentaje: 0.00},
+            {id : 3, nombre : 'Dai', nomRed : 'DAI', precioCompra : 1 , precioVenta : 1.2 , seMuestra: 0, porcentaje: 0.00},
+            {id : 4, nombre : 'Etheriun', nomRed : 'ETH', precioCompra : 2937.68 , precioVenta :2925.54 , seMuestra: 0, porcentaje: 0.00},
+            {id : 5, nombre : 'Terra Luna', nomRed : 'LUNA', precioCompra : 91.33 , precioVenta :85.87 , seMuestra: 0, porcentaje: 0.00},
+            {id : 6, nombre : 'Decentraland ', nomRed : 'MANA', precioCompra : 2.01 , precioVenta :1.90 , seMuestra: 0, porcentaje: 0.00},
+            {id : 7, nombre : 'Smooth Love Potion', nomRed : 'SLP', precioCompra: 0.02 , precioVenta :0.1 , seMuestra: 0, porcentaje: 0.00},
+            {id : 8, nombre : 'Solana', nomRed : 'SOL', precioCompra : 100.94 , precioVenta :97.250, seMuestra: 0, porcentaje: 0.00}
             ];
                         //carga de las monedas en un localstorage para poder usarlo en el resto de los js
                         localStorage.setItem("monedasLocales", JSON.stringify(monedas));

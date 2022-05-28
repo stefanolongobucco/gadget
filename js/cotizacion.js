@@ -1,4 +1,4 @@
-let impor = 0
+/* let impor = 0
 let imporMon = 0
 let depo = 0
 let cBtc = 0
@@ -6,12 +6,10 @@ let vBtc = 0
 const usd = 202.7
 
 const monedas = JSON.parse(localStorage.getItem("monedasLocales") || []);
-
+ */
 function ingresaImpor(){
     x=document.getElementsByClassName("import"); 
-        for(var i = 0; i < x.length; i++){
-            document.getElementsByClassName("import")[i].innerHTML= localStorage.getItem('balance') || [];
-        };
+        document.getElementsByClassName("import")[0].innerHTML= localStorage.getItem('balance')||0;       
     };
     
     ingresaImpor();
@@ -19,18 +17,18 @@ function ingresaImpor(){
     
    
     
-    function CargarMonedas(){
+   /*  function CargarMonedas(){
     x=document.getElementsByClassName("moned"); 
         for(var i = 0; i < x.length; i++){
         document.getElementsByClassName("moned")[i].innerHTML= monedas[i].precioCompra ||[];
     };
     };
-    CargarMonedas();
+    CargarMonedas();  */
+     
     
     
     
-    
-    const btn = document.getElementById("ingresarDinero");
+   /*  const btn = document.getElementById("ingresarDinero");
 
     btn.addEventListener("click",() =>{  
     depo =  parseFloat(prompt("Cuanto dinero se depositara?")) || 0;
@@ -41,7 +39,7 @@ function ingresaImpor(){
     document.getElementsByClassName("import")[0].innerHTML= impor;
     document.getElementsByClassName("import")[1].innerHTML= ((parseFloat(impor)||0)-(parseFloat(acumPesos(movimientos))||0));
     }else{alert("El importe no puede ser 0 ni menor a 0")};  
-    }); 
+    });  */
 
     
     const monCam = document.getElementById("monCam");
@@ -68,13 +66,53 @@ function ingresaImpor(){
 
 
 
-let k = 0; 
+
+let k = 0;  
 const Cripto2 = document.getElementById("Cripto2");
-for (const moneda2 of monedas) {  
+for (const moneda of monedas) {  
 let parrafo = document.createElement("li");
-parrafo.innerHTML = `<span>${moneda2.nomRed}  </span><span>${moneda2.precioCompra}   </span>                    
-                     <span><button onclick="comprarCripto(${k})">COMPRAR</button></span>
-                     <span><button onclick="venderCripto(${k})">VENDER</button></span>`;
+if(moneda.porcentaje >=0){
+    parrafo.innerHTML = `<div class="monD"><span>${moneda.nombre} <span class="monP">${moneda.porcentaje}</span></span><span>${moneda.nomRed}</span> </div>   <div class="precio"><span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span></div><span><button  id="realCom2" onclick="comprarCripto(${k})">COMPRAR</button></span>`;
+}else{parrafo.innerHTML = `<div class="monD"><span>${moneda.nombre} <span class="monN">${moneda.porcentaje}</span></span><span>${moneda.nomRed}</span> </div> <div class="precio"><span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span></div><span><button  id="realCom2" onclick="comprarCripto(${k})">COMPRAR</button></span>`;}
+
  Cripto2.append(parrafo);
  k++;
 };
+
+
+
+function borrar(){   
+    x=document.getElementsByClassName("monD");
+    u=x.length;
+    for(let i = 0; i< u;i++){      
+    elemento = document.getElementsByClassName("monD")[0];
+    padre = elemento.parentNode;    
+    padre2 = padre.parentNode;
+     padre2.removeChild(padre);
+    };
+};
+
+
+
+let test = document.getElementsByClassName("buscarCripto")[0]; 
+test.onkeyup = () => {  
+borrar();
+let test2 =  document.getElementsByClassName("buscarCripto")[0].value;     
+let k = 0;  
+const Cripto3 = document.getElementById("Cripto2");
+for (const moneda of monedas) {    
+        let crip =  moneda.nombre.toUpperCase();
+        let posicion = crip.indexOf(test2.toUpperCase());        
+    if (posicion !== -1){
+let parrafo = document.createElement("li");
+if(moneda.porcentaje >=0){
+    parrafo.innerHTML = `<div class="monD"><span>${moneda.nombre} <span class="monP">${moneda.porcentaje}</span></span><span>${moneda.nomRed}</span> </div>   <div class="precio"><span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span></div><span><button  id="realCom2" onclick="comprarCripto(${k})">COMPRAR</button></span>`;
+}else{parrafo.innerHTML = `<div class="monD"><span>${moneda.nombre} <span class="monN">${moneda.porcentaje}</span></span><span>${moneda.nomRed}</span> </div> <div class="precio"><span>${moneda.precioCompra}   </span><span>${moneda.precioVenta}   </span></div><span><button  id="realCom2" onclick="comprarCripto(${k})">COMPRAR</button></span>`;}
+
+Cripto3.append(parrafo);
+
+}; k++; 
+};
+};
+
+

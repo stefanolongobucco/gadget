@@ -8,7 +8,7 @@
     font-size: 30px;
 }
 
-
+ 
 .conversor form{
     margin: 1em;
     font-size: 20px;
@@ -16,21 +16,100 @@
 
 }
 
-
+form{
+    display: grid;
+    gap: 1em;
+}
 
 input{
-background-color: #7f7f82;
+background-color: white;
 border-top: 0;
 border-right: 0;
 border-left: 0;
 border-bottom-width:5px; 
-border-color:black ;
+border-color: #EC994B;
 outline: none;
-}::placeholder { color:black; }
+}
+
 
 form select{
     font-size: 20px;
-    background-color: #7f7f82;
+    background-color: white;
     border: 0;
     outline: none;
+    }
+
+    #buscarC{
+        display: grid;
+        grid-template-columns: 25% 25%;
+
+    }
+    .mercado p{
+        font-size: 25px;
+        padding: 15px;
+    }
+
+    #Cripto2 li{
+        display: grid;
+        grid-template-columns: 25% 50% 25%;
+        justify-content: space-between;
+        border-radius: 14px;
+        background: linear-gradient(225deg, #201f26, #25242d);
+        box-shadow:  -6px 6px 12px #222128,
+                     6px -6px 12px #24232c;
+        padding: 2em;
+        color: white;
+        margin: 10px;
+    }
+    
+     .monD{
+        display: grid;
+        grid-template-rows: 50% 50%;
+     }
+     .monN{
+        color: red;
+     }
+     .monP{
+        color: green;
+     }
+    
+     .precio{
+        display: grid;
+        grid-template-columns: 50% 50%;
+     }
+    
+    
+
+     #realCom{
+        border: 0;
+        font-size: 20px;
+        background:#EC994B;
+        color: black;
+        padding: 10px;
+        border-radius: 1.5em;
+        cursor: pointer;
+        }#realCom:hover {
+            transition: all 0.3s ease 0s;
+            background-color: #d37d2d; }
+
+    #realCom2{
+        border: 0;
+        font-size: 15px;
+        background:#EC994B;
+        color: #F1EEE9;
+        padding: 10px;
+        border-radius: 1em;
+        cursor: pointer;
+        }#realCom2:hover {
+            transition: all 0.3s ease 0s;
+            background-color: #d37d2d; }
+
+
+
+     @media screen and (max-width: 820px) {
+    
+        .precio{
+            grid-template-columns:0;
+            grid-template-rows: 50% 50%;
+         }
     }

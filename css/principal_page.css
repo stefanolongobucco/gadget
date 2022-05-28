@@ -17,7 +17,7 @@
                  6px -6px 12px #24232c;
     padding: 2em;
     color: white;
-    margin: 5px;
+    margin: 10px;
 }
 
  .monD{
@@ -36,6 +36,30 @@
     grid-template-columns: 50% 50%;
  }
 
+#vermas{
+   display: grid;
+   justify-content: center;
+   margin-bottom: 20px;
+}
+ 
+ .vermas{
+   text-decoration: none;
+   font-size: 20px;
+   background:#EC994B;
+   color: #F1EEE9;
+   padding: 10px;
+   padding-left: 25px;
+   padding-right: 25px;
+   border-radius: 1.5em;
+   cursor: pointer;
+   }.vermas:hover {
+       transition: all 0.3s ease 0s;
+       background-color: #d37d2d; }
+
+.main_content{
+display: grid;
+gap: 1em;
+}
 
  @media screen and (max-width: 820px) {
 

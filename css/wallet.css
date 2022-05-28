@@ -1,9 +1,4 @@
-.main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 3em;
-    width: 100%; }
+
 
 body{
     height: 100vh; 
@@ -11,13 +6,46 @@ body{
 }
 
 
-
-#Cripto2 li{
+ 
+#Cripto li{
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     justify-content: space-between;
-    
+    border-radius: 14px;
+    background: linear-gradient(225deg, #201f26, #25242d);
+    box-shadow:  -6px 6px 12px #222128,
+                 6px -6px 12px #24232c;
+    padding: 2em;
+    color: white;
+    margin: 10px;
 }
 
+.monedas p{
+    padding: 1em;
+    font-size: 25px;
+}
 
+.botonC1{    
+    font-size: 15px;
+    background:#EC994B;
+    color: #F1EEE9;
+    padding: 5px;
+    border-radius: 1em;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    }.botonC1:hover {
+        transition: all 0.3s ease 0s;
+        background-color: #d37d2d; }
 
+.botonC2{
+    font-size: 15px;
+    background:#F1EEE9;    
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 1em;
+    cursor: pointer;
+    }.botonC2:hover {
+        transition: all 0.3s ease 0s;
+        background-color: #73777B; }

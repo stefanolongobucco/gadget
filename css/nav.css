@@ -29,7 +29,6 @@ a{text-decoration: none;}
 }
 
 
-
 .logo-nav img{
     width: 100px;
     height: 100px;
@@ -54,6 +53,36 @@ a{text-decoration: none;}
     color: gray;
 }
 
+#ingresarDinero{
+    font-size: 20px;
+    background:#EC994B;
+    color: #F1EEE9;
+    padding: 15px;
+    border-radius: 1.5em;
+    cursor: pointer;
+    padding-left: 40px;
+    padding-right: 40px;
+    }#ingresarDinero:hover {
+        transition: all 0.3s ease 0s;
+        background-color: #d37d2d; }
+
+#comprarCripto{
+    font-size: 20px;
+    background:#F1EEE9;    
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 1.5em;
+    cursor: pointer;
+    }#comprarCripto:hover {
+        transition: all 0.3s ease 0s;
+        background-color: #73777B; }
+
+#comprarCripto a{
+    text-decoration: none;
+    color: #EC994B;
+}
+
 .principal__main{
     display: grid;
     height: 100vh;
@@ -76,7 +105,12 @@ a{text-decoration: none;}
 .main_content{
     height: 100%;
     width: 100%;
-    background-color: #7f7f82;
+    background-color: white;
+    overflow-y: scroll;
+}
+
+.balanceTotal{
+    color: white;
 }
 
 .menu-icon div{
@@ -115,9 +149,9 @@ a{text-decoration: none;}
     transform: rotate(-45deg) translate(-4px,2px);
 }
 
-.activeline3__bars-menu{
-    transform: rotate(-45deg) translate(-4px,2px);
-}
+
+
+
 
 .nav__top{
     display: grid;
@@ -125,6 +159,85 @@ a{text-decoration: none;}
     align-items: center;
     padding: 2em;
 }
+
+
+.deposito{
+    display: none; 
+    position: absolute;
+    width: 60%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%) ;
+    border-radius: 30px;
+    background: linear-gradient(225deg, #201f26, #25242d);
+    box-shadow:  -20px 20px 60px #33333a,
+    20px -20px 60px #45454e;
+}
+.activedeposito{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr ;
+    justify-content: center;
+    align-items: center;
+}
+
+#depos{
+    background:  linear-gradient(225deg, #201f26, #25242d);
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom-width:3px; 
+    border-color:#EC994B ;
+    outline: none;
+    font-size: 30px;
+    text-align: center;
+    color: #F1EEE9;
+}::placeholder { color:#F1EEE9; }
+
+.depCal{
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows:1fr 1fr 1fr 1fr ;
+color: #F1EEE9;
+font-size: 30px;
+}
+.hr{
+    grid-column: 1 / 3;
+    color:#EC994B;
+    border-bottom: 0;
+    border-right: 0;
+    border-left: 0;
+    border-top-width:3px; 
+    border-color:#EC994B ;
+}
+
+.buttons{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1em;
+}
+
+.realPed{
+font-size: 20px;
+background:#EC994B;
+color: #F1EEE9;
+padding: 15px;
+border-radius: 1.5em;
+cursor: pointer;
+}.realPed:hover {
+    transition: all 0.3s ease 0s;
+    background-color: #d37d2d; }
+
+
+.volPed{
+    background: linear-gradient(225deg, #201f26, #25242d);
+    border: 0;
+    font-size: 20px;
+    color: #d37d2d;
+    cursor: pointer;
+}
+
+
 @media screen and (max-width: 900px) {
     .bars__menu{
         display: block;
@@ -153,11 +266,3 @@ a{text-decoration: none;}
 }
 
 
-
-.main_content{
-    overflow-y: scroll;
-}
-
-.balanceTotal{
-    color: white;
-}
