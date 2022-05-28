@@ -97,8 +97,7 @@ class nuevoMovimiento {
         const newArray =[];
          for (const mov of array){            
             (mov.nomRed == monedas[y].nomRed) &&
-              newArray.push(mov.importe);  
-              console.log(newArray)                      
+              newArray.push(mov.importe);                 
          };        
          return sumarMov(...newArray);
         };
