@@ -2,9 +2,15 @@
 
 const title = localStorage.getItem("tipAcc");
 const monID = localStorage.getItem("idMon");
+const impConv = localStorage.getItem("impConv");
 
 
-
+if(impConv!==0){
+document.getElementById("fondo").value = `${impConv}`;
+let resultCambio = 0;
+resultCambio = ((impConv / usd) / monedas[monID].precioCompra);  
+document.getElementById("cantidCambio").innerHTML = `=${parseFloat(resultCambio) || 0} ${monedas[monID].nomRed}`;
+}
 document.getElementsByClassName("titleCV")[0].innerHTML = `${title} ${monedas[monID].nomRed}`;
 
 
@@ -25,7 +31,7 @@ document.getElementsByClassName("fondosCV")[0].addEventListener("click",() =>{
 
 let convert = document.getElementById("fondo"); 
 convert.onkeyup = () => {         
-    var monCam2 = 'BTC';   
+    var monCam2 = monedas[monID].nomRed;   
     let convert = document.getElementById("fondo").value;              
     const i = monedas.findIndex( (element) => element.nomRed == monCam2);
     let resultCambio = 0;

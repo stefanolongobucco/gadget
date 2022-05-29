@@ -133,16 +133,32 @@ let URLactual = window.location.href;
     ingresaImpor();   
      
       
-
+    let posicioCotizacion = URLactual.indexOf("cotizacion");
+    if (posicioCotizacion !== -1){    
+    function comprarCripto2(){  
+        let nom = document.getElementById("monCam").value;  
+        const pos = monedas.findIndex( (element) => element.nomRed == nom); 
+        localStorage.setItem('idMon', pos);
+        localStorage.setItem('tipAcc','Comprar');
+        localStorage.setItem('impConv',document.getElementById("peso").value);  
+        location.href="ComprarCripto.html";
+       // alert("no funciona si esto")
+    }; };
 
 
 function comprarCripto(y){
     localStorage.setItem('idMon', y);
     localStorage.setItem('tipAcc','Comprar');
+    localStorage.setItem('impConv',0.00);
     location.href="ComprarCripto.html";  
 };
 function venderCripto(y){
     localStorage.setItem('idMon', y);
     localStorage.setItem('tipAcc','Vender');
+    localStorage.setItem('impConv',0.00);
     location.href="ComprarCripto.html";
 };  
+
+
+
+
