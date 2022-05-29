@@ -142,7 +142,6 @@ let URLactual = window.location.href;
         localStorage.setItem('tipAcc','Comprar');
         localStorage.setItem('impConv',document.getElementById("peso").value);  
         location.href="ComprarCripto.html";
-        alert("no funciona si esto")
     }; };
 
 
