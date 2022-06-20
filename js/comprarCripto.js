@@ -56,8 +56,22 @@ function comprarC(y){
         localStorage.setItem("movimientosLocales", JSON.stringify(movimientos));
         localStorage.setItem("monedasLocales", JSON.stringify(monedas));    
         location.href="wallet.html";       
-}else{alert("No tiene suficiente dinero en su cuenta")};        
-}else{alert("El importe no puede ser 0 ni menor a 0")};   
+}else{//alert("No tiene suficiente dinero en su cuenta")
+    Swal.fire({
+        icon: 'error',
+        title: 'Error...',
+        text: 'No tiene suficiente dinero en su cuenta!'
+      })
+
+};        
+}else{//alert("El importe no puede ser 0 ni menor a 0")
+    Swal.fire({
+        icon: 'error',
+        title: 'Error...',
+        text: 'El importe no puede ser 0 ni menor a 0!'
+      })
+
+};   
 };
 
 function venderC(y){

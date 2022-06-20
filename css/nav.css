@@ -189,11 +189,11 @@ a{text-decoration: none;}
     border-left: 0;
     border-bottom-width:3px; 
     border-color:#EC994B ;
-    outline: none;
+    outline: none; 
     font-size: 30px;
     text-align: center;
     color: #F1EEE9;
-}#depos::placeholder { color:#F1EEE9; }
+}#depos::placeholder { color:#58544c; }
 
 .depCal{
 display: grid;

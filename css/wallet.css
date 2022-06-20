@@ -26,25 +26,25 @@ body{
 }
 
 .botonC1{    
-    font-size: 15px;
+    font-size: 17px;
     background:#EC994B;
     color: #F1EEE9;
-    padding: 5px;
-    border-radius: 1em;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 1.5em;
     cursor: pointer;
-    padding-left: 10px;
-    padding-right: 10px;
-    }.botonC1:hover {
+    }.botonC1:hover { 
         transition: all 0.3s ease 0s;
         background-color: #d37d2d; }
 
 .botonC2{
-    font-size: 15px;
+    font-size: 17px;
     background:#F1EEE9;    
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 1em;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 1.5em;
     cursor: pointer;
     }.botonC2:hover {
         transition: all 0.3s ease 0s;
